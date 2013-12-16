@@ -1,0 +1,17 @@
+h1 Ключевые слова
+
+table
+  tr
+    th
+    th
+    th
+
+  - @keywords.each do |keyword|
+    tr
+      td = link_to 'Show', keyword
+      td = link_to 'Edit', edit_keyword_path(keyword)
+      td = link_to 'Destroy', keyword, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'Добавить', new_keyword_path, class: 'btn'
