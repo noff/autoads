@@ -24,11 +24,22 @@ class KeywordsController < ApplicationController
   # POST /keywords
   # POST /keywords.json
   def create
-    @keyword = Keyword.new(keyword_params)
+
+    @keyword = Keyword.new
+
+    text = params[:keyword][:word]
+    words = text.split("\n")
+    success = false
+    words.each do |word|
+      @keyword = Keyword.new word: word
+      @keyword.save
+      success = true
+    end
+
 
     respond_to do |format|
-      if @keyword.save
-        format.html { redirect_to @keyword, notice: 'Keyword was successfully created.' }
+      if success
+        format.html { redirect_to keyword_path, notice: 'Keyword was successfully created.' }
         format.json { render action: 'show', status: :created, location: @keyword }
       else
         format.html { render action: 'new' }
@@ -42,7 +53,7 @@ class KeywordsController < ApplicationController
   def update
     respond_to do |format|
       if @keyword.update(keyword_params)
-        format.html { redirect_to @keyword, notice: 'Keyword was successfully updated.' }
+        format.html { redirect_to keywords_path, notice: 'Keyword was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +80,6 @@ class KeywordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def keyword_params
-      params[:keyword]
+      params[:keyword].permit(:word)
     end
 end

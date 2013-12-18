@@ -1,0 +1,3 @@
+= simple_form_for @sentence do |f|
+  = f.input :value, input_html: {maxlength: 35}
+  .actions = f.submit 'Save'

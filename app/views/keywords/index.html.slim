@@ -1,13 +1,17 @@
 h1 Ключевые слова
 
-table
+table.table
   tr
+    th = 'Word'
+    th = 'Clickrate'
     th
     th
     th
 
   - @keywords.each do |keyword|
     tr
+      td = keyword.word
+      td = keyword.clickrate
       td = link_to 'Show', keyword
       td = link_to 'Edit', edit_keyword_path(keyword)
       td = link_to 'Destroy', keyword, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Value:
+  = @sentence.value
+
+= link_to 'Edit', edit_sentence_path(@sentence)
+'|
+= link_to 'Back', sentences_path

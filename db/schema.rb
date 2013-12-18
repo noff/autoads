@@ -11,12 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216193043) do
+ActiveRecord::Schema.define(version: 20131218215036) do
+
+  create_table "ads", force: true do |t|
+    t.integer  "title_id"
+    t.integer  "sentence1_id"
+    t.integer  "sentence2_id"
+    t.string   "url"
+    t.float    "clickrate",    default: 0.0
+    t.float    "expenses",     default: 0.0
+    t.float    "conversion",   default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "keywords", force: true do |t|
     t.string   "word"
     t.boolean  "enabled",    default: true
     t.float    "clickrate",  default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sentences", force: true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "titles", force: true do |t|
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

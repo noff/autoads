@@ -1,0 +1,19 @@
+h1 Listing titles
+
+table.table
+  tr
+    th Value
+    th
+    th
+    th
+
+  - @titles.each do |title|
+    tr
+      td = title.value
+      td = link_to 'Show', title
+      td = link_to 'Edit', edit_title_path(title)
+      td = link_to 'Destroy', title, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Title', new_title_path, class: 'btn'
