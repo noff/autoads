@@ -1,2 +1,13 @@
-MIXPANEL_API_KEY = PUT_HERE
-MIXPANE_API_SECRET = PUT_HERE
+defaults: &defaults
+  mixpanel_api_key: PUT_HERE
+  mixpanel_api_secret: PUT_HERE
+  mixpanel_api_token: PUT_HERE
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
