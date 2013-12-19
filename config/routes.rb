@@ -1,6 +1,11 @@
 Autoads::Application.routes.draw do
 
-  resources :ads
+  resources :ads do
+    collection do
+      post 'generate'
+      get 'download_csv'
+    end
+  end
   resources :sentences
   resources :titles
   resources :keywords

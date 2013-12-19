@@ -1,17 +1,28 @@
 h1 Listing ads
 
-table
+table.table
   tr
-    th
+    th Ad
+    th URL
+    th Clickrate
+    th Expenses
+    th Conversion
     th
     th
 
   - @ads.each do |ad|
     tr
-      td = link_to 'Show', ad
+      td
+        div = ad.title.value
+        div = ad.sentence1.value
+        div = ad.sentence2.value
+      td = ad.generate_url
+      td = ad.clickrate
+      td = ad.expenses
+      td = ad.conversion
       td = link_to 'Edit', edit_ad_path(ad)
       td = link_to 'Destroy', ad, :confirm => 'Are you sure?', :method => :delete
 
 br
 
-= link_to 'New Ad', new_ad_path
+= link_to 'Generate', generate_ads_path, method: :post, class: 'btn'

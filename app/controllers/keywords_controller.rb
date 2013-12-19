@@ -31,15 +31,16 @@ class KeywordsController < ApplicationController
     words = text.split("\n")
     success = false
     words.each do |word|
-      @keyword = Keyword.new word: word
-      @keyword.save
-      success = true
+      unless word.blank?
+        @keyword = Keyword.find_or_create_by word: word
+        success = true
+      end
     end
 
 
     respond_to do |format|
       if success
-        format.html { redirect_to keyword_path, notice: 'Keyword was successfully created.' }
+        format.html { redirect_to keywords_path, notice: 'Keyword was successfully created.' }
         format.json { render action: 'show', status: :created, location: @keyword }
       else
         format.html { render action: 'new' }

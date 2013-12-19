@@ -7,6 +7,35 @@ class AdsController < ApplicationController
     @ads = Ad.all
   end
 
+  # POST
+  def generate
+    titles = Title.all
+    sentences = Sentence.all
+    sentences2 = Sentence.all
+    titles.each do |title|
+      sentences.each do |s|
+        sentences2.each do |s2|
+          if s.id != s2.id
+            ad = Ad.new
+            ad.title_id = title.id
+            ad.sentence1_id = s.id
+            ad.sentence2_id = s2.id
+            ad.save
+          end
+        end
+      end
+    end
+    redirect_to ads_path, notice: 'Ads generated'
+  end
+
+  def download_csv
+    text = ""
+    Ad.all.each do |ad|
+      text += "Add	enabled	\"#{ad.title.value}\"	\"#{ad.sentence1.value}\"	\"#{ad.sentence2.value}\"	yellowbricks.ru	#{ad.generate_url}	Search Network with Display Select	Standard	 --	eligible	0	0	0.00%	0.00	0.00	0.0		Электронные еноты	Сгенерированные объявления	9783304266	Text ad\n"
+    end
+    render text: text
+  end
+
   # GET /ads/1
   # GET /ads/1.json
   def show
