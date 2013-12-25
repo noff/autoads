@@ -2,6 +2,7 @@ defaults: &defaults
   mixpanel_api_key: PUT_HERE
   mixpanel_api_secret: PUT_HERE
   mixpanel_api_token: PUT_HERE
+  funnel_id: PUT_HERE
 
 development:
   <<: *defaults
